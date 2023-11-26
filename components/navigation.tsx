@@ -1,12 +1,13 @@
 "use client";
-
+import { ElementRef, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Home, User, FolderClosed } from "lucide-react";
 
 import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
-
-import Navmenu from "./navmenu";
+import { useMediaQuery } from "usehooks-ts";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 type Navlink = {
   title: string;
@@ -33,8 +34,57 @@ const navlinks: Navlink[] = [
 ];
 
 const Navigation = () => {
+  const pathname = usePathname();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const [isResetting, setIsResetting] = useState(false);
+
+  const sidebarRef = useRef<ElementRef<"aside">>(null);
+
+  const resetWidth = () => {
+    if (sidebarRef.current) {
+      setIsCollapsed(false);
+      setIsResetting(true);
+
+      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  };
+
+  const collapse = () => {
+    if (sidebarRef.current) {
+      setIsCollapsed(true);
+      setIsResetting(true);
+
+      sidebarRef.current.style.width = "0";
+
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  };
+
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    } else {
+      resetWidth();
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    }
+  }, [pathname, isMobile]);
+
   return (
-    <aside className="group/sidebar h-full bg-background overflow-y-auto relative flex w-48 flex-col z-[9999] dark:bg-[#1F1F1F]">
+    <aside
+      ref={sidebarRef}
+      className={cn(
+        "h-full bg-background overflow-y-auto relative flex w-48 flex-col z-[9999] dark:bg-[#1F1F1F]",
+        isResetting && "transition-all ease-in-out duration-300"
+      )}
+    >
       <div className="flex flex-col justify-center z-50">
         <Button>Profile Card</Button>
 

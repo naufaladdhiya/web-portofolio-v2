@@ -1,3 +1,24 @@
+import {
+  Html5Original,
+  Css3Original,
+  ReactOriginal,
+  JavascriptOriginal,
+  TailwindcssPlain,
+  ReduxOriginal,
+  BootstrapOriginal,
+  SassOriginal,
+  NextjsOriginal,
+  NodejsOriginal,
+  TypescriptOriginal,
+  NpmOriginalWordmark,
+  YarnOriginalWordmark,
+} from "devicons-react";
+
+type SkillProps = {
+  title: string;
+  icon: JSX.Element;
+};
+
 const EXPERIENCE_DATA = [
   {
     title: "Note App",
@@ -36,4 +57,55 @@ const EXPERIENCE_DATA = [
   },
 ];
 
-export default EXPERIENCE_DATA;
+const skills: SkillProps[] = [
+  {
+    title: "HTML",
+    icon: <Html5Original size={`40`} />,
+  },
+  {
+    title: "CSS",
+    icon: <Css3Original size={`40`} />,
+  },
+  {
+    title: "Javascript",
+    icon: <JavascriptOriginal size={`40`} />,
+  },
+  {
+    title: "Typescript",
+    icon: <TypescriptOriginal size={`40`} />,
+  },
+  {
+    title: "ReactJs",
+    icon: <ReactOriginal size={`40`} />,
+  },
+  {
+    title: "TaiwindCss",
+    icon: <TailwindcssPlain size={`40`} />,
+  },
+  {
+    title: "Redux",
+    icon: <ReduxOriginal size={`40`} />,
+  },
+  {
+    title: "Bootstrap",
+    icon: <BootstrapOriginal size={`40`} />,
+  },
+  {
+    title: "SASS",
+    icon: <SassOriginal size={`40`} />,
+  },
+  {
+    title: "NPM",
+    icon: <NpmOriginalWordmark size={`40`} />,
+  },
+  {
+    title: "YARN",
+    icon: <YarnOriginalWordmark size={`40`} />,
+  },
+  {
+    title: "Node",
+    icon: <NodejsOriginal size={`40`} />,
+  },
+];
+
+export { EXPERIENCE_DATA, skills };

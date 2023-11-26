@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
-import ProjectCard from "@/components/card-project";
+import { ArrowRight } from "lucide-react";
 
-import EXPERIENCE_DATA from "@/constant/experience.data";
+import ProjectCard from "@/components/card-project";
+import { EXPERIENCE_DATA } from "@/constant/experience.data";
+import Link from "next/link";
 
 const Homepage = () => {
   return (
@@ -34,9 +35,18 @@ const Homepage = () => {
         <h1 className="text-2xl text-neutral-800 dark:text-neutral-300 font-medium">
           Latest Project
         </h1>
+
+        <Link href={`/project`}>
+          <div className="group flex justify-center cursor-pointer">
+            <p className="mr-1 group-hover:-translate-x-4 transition-all duration-300">
+              View all
+            </p>
+            <ArrowRight />
+          </div>
+        </Link>
       </div>
 
-      <div className="flex gap-5 mt-10 flex-row overflow-x-auto hide-scrollbar">
+      <div className="flex gap-5 mt-10 flex-row overflow-x-auto hide-scrollbar mb-4">
         {EXPERIENCE_DATA.map((item) => (
           <ProjectCard
             key={item.title}
