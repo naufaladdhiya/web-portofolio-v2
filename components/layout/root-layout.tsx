@@ -21,7 +21,12 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       )}
     >
       <Navigation />
-      <div className="flex-1 h-full overflow-y-auto hide-scrollbar">
+      <div
+        className={cn(
+          "flex-1 h-full overflow-y-auto hide-scrollbar "
+          // isMobile && "mt-10"
+        )}
+      >
         <NavMobile />
         {children}
       </div>

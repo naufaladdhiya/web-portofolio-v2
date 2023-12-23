@@ -99,7 +99,10 @@ const Navigation = () => {
               asChild
               variant={`ghost`}
               size={`default`}
-              className="focus:bg-secondary hover:scale-110 transition-transform"
+              className={cn(
+                "focus:bg-secondary hover:scale-110 transition-transform",
+                pathname === link.href && "bg-secondary"
+              )}
             >
               <Link href={link.href}>
                 {link.icon}
